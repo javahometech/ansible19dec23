@@ -1,0 +1,17 @@
+---
+# tasks file for nginx
+- name: Install nginx server
+  dnf:
+    name: "nginx"
+    state: "present"
+- name: start and enable nginx
+  service:
+    name: nginx
+    state: started
+    enabled: True
+- name: copy nginx.conf file to the nginx server
+  template:
+    src: nginx.conf
+    dest: /etc/nginx/conf.d/nginx.conf
+  notify:
+    - restart nginx

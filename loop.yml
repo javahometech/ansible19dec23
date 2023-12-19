@@ -1,0 +1,10 @@
+- hosts: web[0]
+  become: True
+  tasks:
+    - name: Install required packages
+      dnf:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - git
+        - docker
